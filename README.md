@@ -12,3 +12,8 @@ It takes 4 positional arguments:
 - latitude 
 - longitude
 - path to the [dataset](https://github.com/beheni/WebMap/blob/main/locations_1.4.list): 
+
+##  Output
+Program creates an html file like [this](https://github.com/beheni/WebMap/blob/main/map_example.html)
+
+![Example](https://github.com/beheni/WebMap/blob/main/map1_2017.PNG)
