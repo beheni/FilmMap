@@ -26,4 +26,5 @@ When you open the map you can:
 
 - show or hide layers of film markers and you starting location (black marker) ![layers](https://user-images.githubusercontent.com/91615487/153140867-5fc5e19c-2b25-43f3-a426-0ba207b8cb94.PNG) ![l1](https://user-images.githubusercontent.com/91615487/153142181-d985a06c-785d-41c0-a46b-6a57aefa2a68.PNG) ![l2](https://user-images.githubusercontent.com/91615487/153142188-a61f6dc9-934a-4c00-9c69-9e40f7b57b8c.PNG) ![l3](https://user-images.githubusercontent.com/91615487/153142192-c5b3c956-ec71-4014-b8bb-4a255a271189.PNG)
 - change scrolling method (bottomleft) ![scroll](https://user-images.githubusercontent.com/91615487/153141499-2b8f6750-f179-4c86-afa7-fa78dfa49328.PNG)
-- (bottomright)
+- mini map that shows your location and you can change the location on it (bottomright)   
+![minimap](https://user-images.githubusercontent.com/91615487/153144351-200b422b-6fa1-43d1-803a-bf4f4dabdf01.PNG)
