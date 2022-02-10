@@ -1,5 +1,4 @@
 # WebMap
-Studying project for UCU  
 Creates an HTML map with the location you entered and shows the nearest 10 locations where some films where shot in the given year
 
 Program uses *folium* and *geopy.geocoders* libraries
