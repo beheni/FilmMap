@@ -1,8 +1,9 @@
 import argparse
+import math
 from geopy.geocoders import Nominatim
 import folium
 from folium import plugins
-import math
+
 
 
 def parsering():
@@ -13,10 +14,10 @@ Returns persed arguments
     parser.add_argument('year')
     parser.add_argument('latitude')
     parser.add_argument('longitude')
-    parser.add_argument('path_to_dataset', type = str)    
+    parser.add_argument('path_to_dataset', type=str)
     return parser.parse_args()
-    
-    
+
+
 def reading_locations(path_to_dataset: str, year: str) -> list:
     """
 Reads locations from a file and adds all movies from a particular year to the list
@@ -26,14 +27,15 @@ Args:
 Returns:
     list: a list of lists with films from a particuler year and their places
     """
-    with open(path_to_dataset, mode = "r", encoding = "UTF-8", errors = "ignore") as file:
-       data  = file.readlines()[14:]
-       lst_film_place = []
-       for i in range(len(data)):
+    with open(path_to_dataset, mode="r", encoding="UTF-8", errors="ignore") as file:
+        data = file.readlines()[14:]
+        lst_film_place = []
+        for i in range(len(data)):
             data[i] = data[i].strip("\n").split("\t")
             while '' in data[i]:
                 data[i].remove('')
-            if data[i][-1][0] == '(': # deletes mess from a file to get clear location
+            # deletes mess from a file to get clear location
+            if data[i][-1][0] == '(':
                 data[i].pop(-1)
             if year in data[i][0]:
                 lst_film_place.append(data[i])
@@ -44,7 +46,7 @@ def coordinates(location_list: list) -> list:
     """
 Using geopy determines coordinates of the place where the movie was shot and add it to the list
 Args:
-    location_list (list): list of lists whith film title and the location 
+    location_list (list): list of lists whith film title and the location
 Returns:
     list: list with film's title, place and coordinates
     """
@@ -86,7 +88,9 @@ Returns:
         f2 = coordinates[0]
         l1 = film[-1][1]
         l2 = coordinates[1]
-        distance = 12734.889*math.asin(math.sqrt((math.sin((f2-f1)/2))**2+math.cos(f1)*math.cos(f2)*(math.sin((l2-l1)/2))**2))
+        distance = 12734.889 * \
+            math.asin(math.sqrt((math.sin((f2-f1)/2))**2+math.cos(f1)
+                      * math.cos(f2)*(math.sin((l2-l1)/2))**2))
         dict_distance[(film[0], film[-1])] = distance
     return dict_distance
 
@@ -103,10 +107,12 @@ Returns:
     dict_to_folium = {}
     for i in range(10):
         try:
-            dict_to_folium[list(dict_sorted.keys())[i][0]] = list(dict_sorted.keys())[i][1]
+            dict_to_folium[list(dict_sorted.keys())[i][0]] = list(
+                dict_sorted.keys())[i][1]
         except:
             break
     return dict_to_folium
+
 
 def generating_map(dict_to_folium: dict, start_latitude: str, start_longitude: str):
     """
@@ -116,23 +122,27 @@ Args:
 Returns:
     None
     """
-    map = folium.Map(tiles = "Stamen Terrain", location=[start_latitude, start_longitude], control_scale = True)
+    map = folium.Map(tiles="Stamen Terrain", location=[
+                     start_latitude, start_longitude], control_scale=True)
     fg = folium.FeatureGroup(name="Nearest films")
     for key in dict_to_folium:
         latitude = dict_to_folium.get(key)[0]
         longitude = dict_to_folium.get(key)[1]
-        fg.add_child(folium.Marker(location=[latitude, longitude], popup= key, icon=folium.Icon(icon='film', color = "red")))
+        fg.add_child(folium.Marker(location=[
+                     latitude, longitude], popup=key, icon=folium.Icon(icon='film', color="red")))
     map.add_child(fg)
-    #mini map in the corner
-    minimap = plugins.MiniMap(toggle_display = True)
+    # mini map in the corner
+    minimap = plugins.MiniMap(toggle_display=True)
     map.add_child(minimap)
     plugins.ScrollZoomToggler().add_to(map)
-    plugins.Fullscreen(position = "topright").add_to(map)
+    plugins.Fullscreen(position="topright").add_to(map)
     fg2 = folium.FeatureGroup(name="Starting location")
-    fg2.add_child(folium.Marker(location=[start_latitude, start_longitude], popup= "You are here", icon=folium.Icon(color = "black", icon='nothing')))
+    fg2.add_child(folium.Marker(location=[start_latitude, start_longitude],
+                  popup="You are here", icon=folium.Icon(color="black", icon='nothing')))
     map.add_child(fg2)
     map.add_child(folium.LayerControl())
     map.save('Map.html')
+
 
 def main():
     """
@@ -141,19 +151,20 @@ Main function
     args = parsering()
     path_to_dataset = args.path_to_dataset
     year = args.year
-    
+
     list_of_locations = reading_locations(path_to_dataset, year)
-    
+
     list_with_coords = coordinates(list_of_locations)
-    
+
     start_latitude = float(args.latitude)
     start_longitude = float(args.longitude)
-    
+
     coords = (start_latitude, start_longitude)
-    
+
     dict_with_distances = distance(list_with_coords, coords)
     dict_with_nearest = nearest_locations(dict_with_distances)
     generating_map(dict_with_nearest, start_latitude, start_longitude)
-    
+
+
 if __name__ == "__main__":
     main()
