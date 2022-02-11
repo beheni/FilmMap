@@ -1,7 +1,7 @@
 # WebMap
-Creates an HTML map with the location you entered and shows the nearest 10 locations where some films where shot in the given year
+Creates an HTML map with the location you entered (black marker) and shows (red markers) the nearest 10 locations where some films where shot in the given year
 
-Program uses *folium* and *geopy.geocoders* libraries
+Program uses *folium* (generating HTML map) and *geopy.geocoders* (getting coordinates by location) libraries
 
 ## Usage
 Program works from a command line (uses *argparse* for parsing arguments)
