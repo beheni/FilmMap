@@ -17,7 +17,7 @@ It takes 4 positional arguments:
 ##  Output
 Program creates an html file like [this](https://github.com/beheni/WebMap/blob/main/Map_exmpl.html)
 
-![Example](https://github.com/beheni/WebMap/blob/main/map1_2017.PNG)
+![Example](https://github.com/beheni/WebMap/blob/main/map_example.PNG)
 
 ## Tool set
 When you open the map you can:
