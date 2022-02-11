@@ -4,7 +4,7 @@ Creates an HTML map with the location you entered and shows the nearest 10 locat
 Program uses *folium* and *geopy.geocoders* libraries
 
 ## Usage
-Program works from a command line
+Program works from a command line (uses *argparse* for parsing arguments)
 ```bash
 > python main.py 2017 1 1 locations_1.4
 ```
