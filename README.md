@@ -12,7 +12,7 @@ It takes 4 positional arguments:
 - year 
 - latitude of the starting point
 - longitude of the starting point
-- path to the [dataset](https://github.com/beheni/WebMap/blob/main/locations_1.4.list): 
+- path to the [dataset](https://github.com/beheni/WebMap/blob/main/locations_1.4.list)
 
 ##  Output
 Program creates an html file like [this](https://github.com/beheni/WebMap/blob/main/Map_exmpl.html)
