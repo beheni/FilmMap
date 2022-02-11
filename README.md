@@ -6,7 +6,7 @@ Program uses *folium* and *geopy.geocoders* libraries
 ## Usage
 Program works from a command line
 ```bash
->>> python main.py 2017 1 1 locations_1.4
+> python main.py 2017 1 1 locations_1.4
 ```
 It takes 4 positional arguments:
 - year 
