@@ -1,4 +1,4 @@
-# WebMap
+# Film Map
 Creates an HTML map with the location you entered (black marker) and shows (red markers) the nearest 10 locations where some films where shot in the given year
 
 Program uses *folium* (generating HTML map) and *geopy.geocoders* (getting coordinates by location) libraries
